@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
 import {
   Text,
   Box,
@@ -7,10 +7,15 @@ import {
   useTheme,
   useColorMode,
   useColorModeValue,
-  useColorModeValue,
 } from "native-base";
+import { Pressable } from "react-native";
 import ThemeSwitch from "../components/theme-switch";
+import Checkbox from "../components/checkbox";
 export default function MainScreen(): JSX.Element {
+  const [checked, setChecked] = useState(false);
+  const handlePressCheckbox = useCallback(() => {
+    setChecked((prev = !prev));
+  }, []);
   return (
     <Center
       _dark={{ bg: "blueGray.900" }}
@@ -19,6 +24,11 @@ export default function MainScreen(): JSX.Element {
       flex={1}
     >
       <VStack space={5} alignItems="center">
+        <Box>
+          <Pressable onPress={handlePressCheckbox}>
+            <Checkbox checked={checked} />
+          </Pressable>
+        </Box>
         <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
           <Text>Open up App.tsx to start working on your app!</Text>
         </Box>
