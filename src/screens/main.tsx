@@ -10,11 +10,12 @@ import {
 } from "native-base";
 import { Pressable } from "react-native";
 import ThemeSwitch from "../components/theme-switch";
-import Checkbox from "../components/checkbox";
+import TaskItem from "../components/task-item";
+
 export default function MainScreen(): JSX.Element {
   const [checked, setChecked] = useState(false);
   const handlePressCheckbox = useCallback(() => {
-    setChecked((prev = !prev));
+    setChecked((prev: boolean = false) => !prev);
   }, []);
   return (
     <Center
@@ -24,11 +25,7 @@ export default function MainScreen(): JSX.Element {
       flex={1}
     >
       <VStack space={5} alignItems="center">
-        <Box>
-          <Pressable onPress={handlePressCheckbox}>
-            <Checkbox checked={checked} />
-          </Pressable>
-        </Box>
+        <TaskItem isDone={checked} onToggleCheckbox={handlePressCheckbox} />
         <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
           <Text>Open up App.tsx to start working on your app!</Text>
         </Box>
