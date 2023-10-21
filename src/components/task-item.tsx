@@ -4,10 +4,9 @@ import {
   Box,
   useTheme,
   themeTools,
-  Text,
   useColorModeValue,
   HStack,
-  Theme,
+  Icon,
 } from "native-base";
 import Checkbox from "./checkbox";
 import TaskLabel from "./task-label";

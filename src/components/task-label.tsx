@@ -26,8 +26,8 @@ const AnimatedHStack = Animated.createAnimatedComponent(HStack);
 const AnimatedText = Animated.createAnimatedComponent(Text);
 
 const AnimatedTaskLabel = memo((props: Props) => {
-  const { strikethrough, textColor, inactiveTextColor, onPress, children };
-  props;
+  const { strikethrough, textColor, inactiveTextColor, onPress, children } =
+    props;
 
   const hstackOffset = useSharedValue(0);
   const hstackAnimatedStyles = useAnimatedStyle(
@@ -75,6 +75,7 @@ const AnimatedTaskLabel = memo((props: Props) => {
         withTiming(1, { duration: 400, easing }),
       );
     } else {
+      strikethroughWidth.value = withTiming(0, { duration: 400, easing });
       textColorProgress.value = withTiming(0, { duration: 400, easing });
     }
   });
