@@ -7,7 +7,7 @@ import Animated, {
   interpolateColor,
 } from "react-native-reanimated";
 import Svg, { Path, Defs, ClipPath, G } from "react-native-svg";
-import AnimatedStroke from "./stroke";
+import Stroke from "./stroke";
 
 const MARGIN = 10;
 const vWidth = 64 + MARGIN;
@@ -71,7 +71,7 @@ const AnimatedCheckbox = (props: Props) => {
       </Defs>
 
       <G clipPath="url(clipPath)">
-        <AnimatedStroke
+        <Stroke
           progress={progress}
           d={checkMarkPath}
           stroke={highlightColor}

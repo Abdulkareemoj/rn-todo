@@ -16,3 +16,5 @@ const animatedProps = useAnimatedProps(()=> ({
         0, length - length * Easing.bezier(0.37, 0, 0.63, 1)(progress.value)-0
     )
 }))
+
+export default Stroke
