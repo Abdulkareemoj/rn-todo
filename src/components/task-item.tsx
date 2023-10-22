@@ -10,13 +10,19 @@ import {
 } from "native-base";
 import Checkbox from "./checkbox";
 import TaskLabel from "./task-label";
-interface Props {
+import SwipeView from "./swipe-view";
+import { feather } from "@expo/vector-icons";
+import { useColorMode } from "native-base";
+interface Props extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   isDone: boolean;
   onToggleCheckbox?: () => void;
+  onPressLabel?: () => void;
+  onRemove?: () => void;
+  subject: string;
 }
 
 const TaskItem = (props: Props) => {
-  const { isDone } = props;
+  const { isDone, onToggleCheckbox, onPressLabel, onRemove, subject } = props;
   const theme = useTheme();
   const highlightColor = themeTools.getColor(
     theme,
@@ -40,7 +46,13 @@ const TaskItem = (props: Props) => {
   );
 
   return (
-    <HStack>
+    <HStack
+      alignItems="center"
+      w="full"
+      px={4}
+      py={2}
+      bg={useColorModeValue("warmGray.50", "primary.900")}
+    >
       {" "}
       <Box width={30} height={40} mr={2}>
         <Pressable onPress={onToggleCheckbox}>

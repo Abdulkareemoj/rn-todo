@@ -24,7 +24,7 @@ export default function MainScreen(): JSX.Element {
       px={4}
       flex={1}
     >
-      <VStack space={5} alignItems="center">
+      <VStack space={5} alignItems="center" w="full">
         <TaskItem isDone={checked} onToggleCheckbox={handlePressCheckbox} />
         <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
           <Text>Open up App.tsx to start working on your app!</Text>
