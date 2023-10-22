@@ -1,10 +1,10 @@
 import React from "react";
+import { Dimensions } from "react-native";
 import {
   PanGestureHandler,
-  PanGestureHandlerGestureEvent,
-  PanGestureHandlerProps,
+  type PanGestureHandlerGestureEvent,
+  type PanGestureHandlerProps,
 } from "react-native-gesture-handler";
-import useAnimatedProps from "react-native";
 import Animated, {
   useAnimatedGestureHandler,
   useSharedValue,
@@ -12,11 +12,10 @@ import Animated, {
   withTiming,
   runOnJS,
 } from "react-native-reanimated";
-import { Box } from "native-base";
 import makeStyledComponent from "../utils/styled";
 
 const StyledView = makeStyledComponent(Animated.View);
-interface Props extends Pic<PanGestureHandlerProps, "simultaneousHandlers"> {
+interface Props extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   children: React.ReactNode;
   backView?: React.ReactNode;
   onSwipeLeft?: () => void;
