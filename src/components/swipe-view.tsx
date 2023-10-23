@@ -48,7 +48,7 @@ const SwipeView = (props: Props) => {
   }));
 
   return (
-    <StyledView>
+    <StyledView w="full">
       <PanGestureHandler
         simultaneousHandlers={simultaneousHandlers}
         onGestureEvent={panGesture}
