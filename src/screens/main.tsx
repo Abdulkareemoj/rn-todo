@@ -14,6 +14,7 @@ import TaskItem from "../components/task-item";
 
 export default function MainScreen(): JSX.Element {
   const [checked, setChecked] = useState(false);
+  const [subject, setSubject] = useState("Task Item");
   const handlePressCheckbox = useCallback(() => {
     setChecked((prev: boolean = false) => !prev);
   }, []);
@@ -25,7 +26,11 @@ export default function MainScreen(): JSX.Element {
       flex={1}
     >
       <VStack space={5} alignItems="center" w="full">
-        <TaskItem isDone={checked} onToggleCheckbox={handlePressCheckbox} />
+        <TaskItem
+          isDone={checked}
+          onToggleCheckbox={handlePressCheckbox}
+          subject={subject}
+        />
         <Box p={10} bg={useColorModeValue("red.500", "yellow.500")}>
           <Text>Open up App.tsx to start working on your app!</Text>
         </Box>
