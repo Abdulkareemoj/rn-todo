@@ -44,9 +44,32 @@ const handleToggleCheckbox= useCallback(() => {
   onToggleItem(data)
 }, [data, onToggleItem])
 
-const handleToggleSubject= useCallback(() => {
+const handleSubject= useCallback(() => {
+  subject => {
+    onChangeSubject(data, subject	)
+  }
   onToggleItem(data, subject)
 }, [data, onChangeSubject])
+
+  const handleFinishEditing= useCallback(() => {
+      onfinishEditing(data)
+  }, [data, onFinishEEditing])
+
+  const handlePressLabel= useCallback(()=>{
+    onPressLabel(data)
+  }, [data, onPressLabel])
+
+  const handleRemove= useCallback(()=>{
+onRemove(data)
+  }[data, onRemove])
+
+  return(
+    <StyledView>
+      
+    </StyledView>
+  )
+
 export default function TaskList(props: TaskListProps){
-    
-}
+    }
+
+  
