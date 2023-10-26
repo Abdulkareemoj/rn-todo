@@ -44,7 +44,7 @@ const handleToggleCheckbox= useCallback(() => {
   onToggleItem(data)
 }, [data, onToggleItem])
 
-const handleSubject= useCallback(() => {
+const handleChangeSubject= useCallback(() => {
   subject => {
     onChangeSubject(data, subject	)
   }
@@ -64,12 +64,50 @@ onRemove(data)
   }[data, onRemove])
 
   return(
-    <StyledView>
-      
+    <StyledView w="full" from={{
+      opacity:0,
+      scale:0.5,
+      marginBottom:-46
+    }}
+    animate={{
+        opacity:1,
+      scale:1,
+      marginBottom:0
+    }}
+    exit={{
+        opacity:0,
+      scale:0.5,
+      marginBottom:-46    
+    }}
+    >
+<TaskItem 
+simultaneousHandlers={simultaneousHandlers}
+subject={data.subject}
+isDone={data.done}
+isEditing={isEditing}
+onToggleCheckbox={handleToggleCheckbox}
+onChangeSubject={handleChangeSubject}
+onFinishEditing={handleFinishEditing}
+onPressLabel={handlePressLabel}
+onRemove={handleRemove}
+/>
     </StyledView>
   )
 
 export default function TaskList(props: TaskListProps){
-    }
+const{
+  data, editingItemId, onToggleItem, onChangeSubject, onFinishEditing, onPressLabel, onRemoveItem
+} = props
+const refScrollView = useRef(null)   
+return(
+  <StyledScrollView ref={refScrollView} w="full">
+<AnimatePresence>
+  {data.map(item=>(
+   <TaskItem key={item.id} data={item} simultaneousHandlers={refScrollView} isEditing={item.id === editingItemId} onToggleItem={onToggleItem} onChangeSubject={onChangeSubject} onPressLabel={onPressLabel} onRemove={onRemoveItem}/>
+  ))}
+</AnimatePresence>
+  </StyledScrollView>
+)
+}
 
   
