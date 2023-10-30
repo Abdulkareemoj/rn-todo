@@ -7,6 +7,8 @@ import {
   useTheme,
   useColorMode,
   useColorModeValue,
+  Fab,
+  Icon
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 import ThemeSwitch from "../components/theme-switch";
@@ -82,7 +84,16 @@ setEditingItemId(item.id)
       flex={1}
     >
       <VStack space={5} alignItems="center" w="full">
-      <TaskList />
+      <TaskList 
+      data={data}
+      onToggleItem={handleToggleTaskItem}
+      onChangeSubject={handleChangeTaskItemSubject}
+      onFinishEditing={handleFinishEditingTaskItem}
+      onPressLabel={handlePressTaskItemLabel}
+      onRemoveItem={handleRemoveItem}
+      editingItemId={editingItemId}
+       
+      />
         <TaskItem
           isDone={checked}
           onToggleCheckbox={handlePressCheckbox}
@@ -98,5 +109,22 @@ setEditingItemId(item.id)
         />
         <ThemeSwitch />
       </VStack>
+      <Fab position="absolute" renderInPortal={false} size="sm" icon={<Icon color="white" as={<AntDesign name="plus" size="sm" />} />} 
+      colorScheme={useColorModeValue('blue', 'darkBlue' )}
+bg={useColorModeValue('blue.500', 'blue.400' )}
+onPress={()=>{
+  const id= nanoid()
+  SetData([
+    {
+      id,
+      subject: '',
+      done: false
+    },
+    ...data
+  ])
+  setEditingItemId(id)
+}}
+/>
     </Center>
-  );}
+  );
+}
