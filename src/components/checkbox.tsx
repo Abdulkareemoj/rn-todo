@@ -23,7 +23,7 @@ interface Props {
   boxOutlineColor: string;
 }
 
-const AnimatedCheckbox = (props: Props) => {
+const Checkbox = (props: Props): JSX.Element => {
   const { checked, checkmarkColor, highlightColor, boxOutlineColor } = props;
 
   const progress = useSharedValue(0);
@@ -60,8 +60,7 @@ const AnimatedCheckbox = (props: Props) => {
       <Defs>
         <ClipPath id="clipPath">
           <Path
-            fill=""
-            white
+            fill=" white"
             stroke="gray"
             strokeLinejoin="round"
             strokeLinecap="round"
@@ -94,4 +93,4 @@ const AnimatedCheckbox = (props: Props) => {
   return;
 };
 
-export default AnimatedCheckbox;
+export default Checkbox;

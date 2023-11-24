@@ -17,7 +17,7 @@ import {
 import Checkbox from "./checkbox";
 import TaskLabel from "./task-label";
 import SwipeView from "./swipe-view";
-import { feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 interface Props extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   isDone: boolean;
@@ -30,7 +30,7 @@ interface Props extends Pick<PanGestureHandlerProps, "simultaneousHandlers"> {
   onFinishEditing?: () => void;
 }
 
-const TaskItem = (props: Props) => {
+const TaskItem = (props: Props): JSX.Element => {
   const {
     isDone,
     onToggleCheckbox,
