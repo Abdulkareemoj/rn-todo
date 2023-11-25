@@ -25,7 +25,7 @@ const AnimatedHStack = Animated.createAnimatedComponent(HStack);
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 
-const AnimatedTaskLabel = memo((props: Props) => {
+const TaskLabel = memo((props: Props) => {
   const { strikethrough, textColor, inactiveTextColor, onPress, children } =
     props;
 
