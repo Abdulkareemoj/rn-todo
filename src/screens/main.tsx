@@ -11,10 +11,13 @@ import {
   Icon
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
-import ThemeSwitch from "../components/theme-switch";
+// import ThemeSwitch from "../components/theme-switch";
 import TaskItem from "../components/task-item";
+import ColorBox  from "../components/color-box";
 import { nanoid } from "nanoid";
 import TaskList from "../components/task-list";
+import Masthead from "../components/masthead";
+import NavBar from "../components/navbar";
 const initialData = [
   {
     id: nanoid(),
@@ -33,7 +36,7 @@ const initialData = [
   },
 ];
 
-export default function MainScreen(): JSX.Element   {
+export default function MainScreen(): JSX.Element{
   const [data, setData] = useState(initialData);
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
 
@@ -58,8 +61,8 @@ const index = prevData.indexOf(item)
         subject: newSubject
       }
       return newData
-    })
- }, [])
+    }, []})
+  
 
  const handleFinishEditingTaskItem = useCallback(_item=> {setEditingitemId(null)
 
@@ -68,6 +71,7 @@ const index = prevData.indexOf(item)
  const handlePressTaskItemLabel = useCallback(item => {
 setEditingItemId(item.id)
  }, [])
+
  const handleRemoveItem = useCallback(_item=> {setData(prevData =>{
   const newData = prevData.filter(i=>i!==item)
   return newData
@@ -75,15 +79,16 @@ setEditingItemId(item.id)
 
 }, [])
 
-
+}
   return (
-    <Center
-      _dark={{ bg: "blueGray.900" }}
-      _light={{ bg: "blueGray.50" }}
-      px={4}
-      flex={1}
+    <ColorBox
+    flex={1}
+    bg={useColorModeValue('warmGray.50', 'primary.900')} 
     >
-      <VStack space={5} alignItems="center" w="full">
+      <Masthead title="Hello there" image={require('../assets/something.jpg')}>
+<NavBar/>
+      </Masthead>
+      <VStack flex={1} space={1} mt="-20px" borderTopLeftRadius="20px" borderTopRightRadius="20px" pt="20px" bg={useColorModeValue('warmGray.50', 'primary.900')}>
       <TaskList 
       data={data}
       onToggleItem={handleToggleTaskItem}
@@ -107,9 +112,12 @@ setEditingItemId(item.id)
             setEditing(false);
           }}
         />
-        <ThemeSwitch />
       </VStack>
-      <Fab position="absolute" renderInPortal={false} size="sm" icon={<Icon color="white" as={<AntDesign name="plus" size="sm" />} />} 
+      <Fab position="absolute" 
+      renderInPortal={false} 
+      size="sm" 
+      icon={<Icon color="white"
+       as={<AntDesign name="plus" size="sm" />} />} 
       colorScheme={useColorModeValue('blue', 'darkBlue' )}
 bg={useColorModeValue('blue.500', 'blue.400' )}
 onPress={()=>{
@@ -125,6 +133,6 @@ onPress={()=>{
   setEditingItemId(id)
 }}
 />
-    </Center>
+    </ColorBox>
   );
-}
+
