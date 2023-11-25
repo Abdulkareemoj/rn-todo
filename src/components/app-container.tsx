@@ -5,11 +5,9 @@ import { theme } from "../theme";
 interface Props {
   children: React.ReactNode;
 }
-// INsupposed to be {props}
 export default function AppContainer({ children }: Props): JSX.Element {
   return (
     <NavigationContainer>
-      {/* /supposed to be{props.children} 7:17 */}
       <NativeBaseProvider theme={theme}>{children}</NativeBaseProvider>
     </NavigationContainer>
   );
