@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import {
-  Box,
   HStack,
   VStack,
   Center,
