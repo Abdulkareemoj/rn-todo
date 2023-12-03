@@ -37,23 +37,30 @@ interface TaskItemProps
 }
 
 export const AnimatedTaskItem = (props: TaskItemProps) => {
-const { simultaneousHandlers, data, onToggleItem, isEditing, onChangeSubject, onFinishEditing, onPressLabel, onRemove};
-}=props
+const {
+    simultaneousHandlers,
+    data,
+    isEditing,
+    onToggleItem,
+    onChangeSubject,
+    onFinishEditing,
+    onPressLabel,
+    onRemove
+  } = props
 
 const handleToggleCheckbox= useCallback(() => {
   onToggleItem(data)
 }, [data, onToggleItem])
 
-const handleChangeSubject= useCallback(() => {
-  subject => {
-    onChangeSubject(data, subject	)
-  }
-  onToggleItem(data, subject)
-}, [data, onChangeSubject])
-
+  const handleChangeSubject = useCallback(
+    (subject) => {
+      onChangeSubject(data, subject);
+    },
+    [data, onChangeSubject],
+  );
   const handleFinishEditing= useCallback(() => {
-      onfinishEditing(data)
-  }, [data, onFinishEEditing])
+      onFinishEditing(data)
+  }, [data, onFinishEditing])
 
   const handlePressLabel= useCallback(()=>{
     onPressLabel(data)
@@ -61,7 +68,7 @@ const handleChangeSubject= useCallback(() => {
 
   const handleRemove= useCallback(()=>{
 onRemove(data)
-  }[data, onRemove])
+  }, [data, onRemove])
 
   return(
     <StyledView w="full" from={{
@@ -93,21 +100,36 @@ onRemove={handleRemove}
 />
     </StyledView>
   )
+  }
+export default function TaskList(props: TaskListProps) {
+  const {
+    data,
+    editingItemId,
+    onToggleItem,
+    onChangeSubject,
+    onFinishEditing,
+    onPressLabel,
+    onRemoveItem,
+  } = props;
+  const refScrollView = useRef(null);
 
-export default function TaskList(props: TaskListProps){
-const{
-  data, editingItemId, onToggleItem, onChangeSubject, onFinishEditing, onPressLabel, onRemoveItem
-} = props
-const refScrollView = useRef(null)   
-return(
-  <StyledScrollView ref={refScrollView} w="full">
-<AnimatePresence>
-  {data.map(item=>(
-   <TaskItem key={item.id} data={item} simultaneousHandlers={refScrollView} isEditing={item.id === editingItemId} onToggleItem={onToggleItem} onChangeSubject={onChangeSubject} onPressLabel={onPressLabel} onRemove={onRemoveItem}/>
-  ))}
-</AnimatePresence>
-  </StyledScrollView>
-)
+  return (
+    <StyledScrollView ref={refScrollView} w="full">
+      <AnimatePresence>
+        {data.map((item) => (
+          <AnimatedTaskItem
+            key={item.id}
+            data={item}
+            simultaneousHandlers={refScrollView}
+            isEditing={item.id === editingItemId}
+            onToggleItem={onToggleItem}
+            onChangeSubject={onChangeSubject}
+            onFinishEditing={onFinishEditing}
+            onPressLabel={onPressLabel}
+            onRemove={onRemoveItem}
+          />
+        ))}
+      </AnimatePresence>
+    </StyledScrollView>
+  );
 }
-
-  
