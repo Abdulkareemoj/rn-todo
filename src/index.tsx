@@ -4,7 +4,7 @@ import MainScreen from "./screens/main";
 import AboutScreen from "./screens/about";
 import Sidebar from "./components/sidebar";
 const Drawer = createDrawerNavigator();
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <Drawer.Navigator
       initialRouteName="Main"
