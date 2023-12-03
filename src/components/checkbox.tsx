@@ -12,7 +12,7 @@ import Stroke from "./stroke";
 const MARGIN = 10;
 const vWidth = 64 + MARGIN;
 const vHeight = 64 + MARGIN;
-// const checkMarkPath =
+// const checkMarkPath = M15 31.1977C23.1081 36.4884 29.5946 43 29.5946 4
 // const outlineBoxPath =
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
