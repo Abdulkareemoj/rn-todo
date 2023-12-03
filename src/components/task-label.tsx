@@ -1,6 +1,5 @@
 import {
   Easing,
-  useShared,
   useAnimatedStyle,
   withTiming,
   withSequence,
@@ -8,9 +7,8 @@ import {
   interpolateColor,
   useSharedValue,
 } from "react-native-reanimated";
-import { Pressable } from "react-native";
 import React, { useEffect, memo } from "react";
-import { Text, HStack, Box } from "native-base";
+import { Text, HStack, Box, Pressable } from "native-base";
 
 interface Props {
   strikethrough: boolean;

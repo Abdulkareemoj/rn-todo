@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { type PanGestureHandlerProps } from "react-native-gesture-handler";
 import {
   type NativeSyntheticEvent,
-  Pressable,
   type TextInputChangeEventData,
 } from "react-native";
 import {
@@ -11,6 +10,7 @@ import {
   themeTools,
   useColorModeValue,
   HStack,
+  Pressable,
   Icon,
   Input,
 } from "native-base";
