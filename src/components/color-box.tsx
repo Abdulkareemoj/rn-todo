@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Box, useTheme, themeTools } from "native-base";
 import usePrevious from "../utils/use-previous";
 import Animated, {
@@ -16,7 +16,7 @@ const ColorBox = ({ bg, ...props }: any) => {
   const progress = useSharedValue(0);
 
   useEffect(() => {
-    progress.value   = 0;
+    progress.value = 0;
   }, [hexBg]);
 
   const animatedStyles = useAnimatedStyle(() => {
