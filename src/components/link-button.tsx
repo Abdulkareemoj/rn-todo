@@ -8,7 +8,7 @@ interface Props extends IButtonProps {
 
 const LinkButton = ({ href, ...props }: Props) => {
   const handlePress = useCallback(() => {
-    Linking.openURL(href);
+    void Linking.openURL(href);
   }, [href]);
   return <Button {...props} onPress={handlePress} />;
 };
